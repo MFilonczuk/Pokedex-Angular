@@ -1,0 +1,38 @@
+<nav>
+  <p
+    routerLink="/home"
+    class="h1"
+    style="
+      text-align: center;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color: #ffcb05;
+      text-shadow: 3px 2px 0 #2a75bb, 0 -1px 0 #2a75bb, 0 1px 0 #2a75bb,
+        -1px 0 0 #2a75bb;
+      letter-spacing: 1px;
+    "
+  >
+    {{ pageTitle }}
+  </p>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="input-group input-group-md">
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="np. Bulbasaur"
+          [(ngModel)]="pokemonName"
+        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="findPokemon(pokemonName)"
+        >
+          Wyszukaj
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

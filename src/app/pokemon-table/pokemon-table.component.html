@@ -1,0 +1,60 @@
+<div
+  class="row justify-content-center"
+  style="box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5); padding: 1rem"
+>
+  <div class="col-md-10">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.id }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{ item.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="types">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Types
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{ item.type }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="abilities">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Abilities
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.abilities[0].ability.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Actions
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color">
+          <button>Akcja 1</button> <button>Akcja 2</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>
