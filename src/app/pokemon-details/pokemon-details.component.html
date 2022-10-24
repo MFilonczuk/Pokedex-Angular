@@ -1,1 +1,121 @@
-<p>pokemon-details works!</p>
+<div style="border: 1px solid black; padding: 2rem">
+  <h4 class="text-center">Pokemon Details</h4>
+  <img
+    src="{{ pokemonDetails.img }}"
+    class="rounded mx-auto d-block"
+    alt="Responsive image"
+  />
+  <div class="row" style="margin-top: 2rem">
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>ID</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.id }}"
+          disabled
+        />
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>NAME</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.name }}"
+          disabled
+        />
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>TYPE</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.type }}"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 2rem">
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>HP</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.hp }}"
+          disabled
+        />
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>ATTACK</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.atk }}"
+          disabled
+        />
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>DEFENSE</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.def }}"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin: 2rem">
+    <div class="col-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>ABILITIES</strong></span>
+        <input
+          *ngFor="let item of spellsArray"
+          type="text"
+          pInputText
+          value="{{ item.ability.name }}"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin: 2rem">
+    <div class="col-md-6">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>WEIGHT</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.weight }}"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><strong>BASE EXP</strong></span>
+        <input
+          type="text"
+          pInputText
+          value="{{ pokemonDetails.xp }}"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+</div>

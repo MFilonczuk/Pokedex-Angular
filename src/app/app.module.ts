@@ -24,6 +24,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ProgressBarModule,
     DropdownModule,
     ButtonModule,
+    ImageModule,
     DialogModule,
     ContextMenuModule,
     MultiSelectModule,
@@ -55,7 +57,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ToastModule,
     RouterModule.forRoot([
       { path: 'compare', component: PokemonCompareComponent },
-      { path: 'details', component: PokemonDetailsComponent },
+      { path: 'details/:id', component: PokemonDetailsComponent },
       { path: 'home', component: PokemonTableComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ]),
