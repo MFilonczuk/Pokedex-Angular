@@ -11,9 +11,12 @@ import { environment } from 'src/environments/environment';
 export class PokemonTableService {
   constructor(private http: HttpClient) {}
 
-  getPokemons(): Observable<IPokemonApiResponse> {
+  getPokemons(
+    lowerBound: number,
+    upperBound: number
+  ): Observable<IPokemonApiResponse> {
     return this.http.get<IPokemonApiResponse>(
-      environment.apiUrl + `pokemon/?offset=0&limit=10`
+      environment.apiUrl + `pokemon/?offset=${lowerBound}&limit=${upperBound}`
     );
   }
 }
