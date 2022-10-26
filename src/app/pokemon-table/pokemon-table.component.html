@@ -41,11 +41,9 @@
             <p-button
               (click)="showModalDialog(pokemon.abilities)"
               icon="pi pi-external-link"
-              label="{{ pokemon.abilities[0].ability.name }}, {{
-                pokemon.abilities.length - 1
-              }} more {{
-                pokemon.abilities.length <= 2 ? 'ability' : 'abilities'
-              }}"
+              label="{{ pokemon.abilities[0].ability.name }} 
+              {{ pokemonAbilitiesText(pokemon.abilities.length) }} 
+              "
             >
             </p-button>
             <p-dialog
@@ -58,7 +56,7 @@
               [resizable]="false"
             >
               <p class="m-0" *ngFor="let item of spellsArray">
-                {{ item.ability.name }}
+                - {{ item.ability.name }}
               </p>
               <ng-template pTemplate="footer">
                 <p-button

@@ -11,7 +11,7 @@ import { IPokemonDetails } from '../interfaces/IPokemon-details';
 })
 export class PokemonDetailsComponent implements OnInit {
   sub!: Subscription;
-  pokemonId: string = '1';
+  pokemonId: string | any = '1';
   spellsArray: any[] = [];
 
   pokemonDetails: IPokemonDetails = {
@@ -33,15 +33,13 @@ export class PokemonDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const snapshot: RouterStateSnapshot = this.router.routerState.snapshot;
-    this.pokemonId = snapshot.url.substring(snapshot.url.length - 1);
+    this.pokemonId = snapshot.url.split('/').pop();
 
     this.sub = this.pokemonDetailsService
       .getPokemonDetails(this.pokemonId)
       .subscribe((response) => {
-        console.log(response);
         const pokemon$: Observable<any>[] | any = [];
         pokemon$.push(response);
-        console.log(pokemon$);
 
         this.pokemonDetails.id = pokemon$[0].id;
         this.pokemonDetails.name = pokemon$[0].forms[0].name;
@@ -57,8 +55,6 @@ export class PokemonDetailsComponent implements OnInit {
         this.pokemonDetails.abilities.forEach((ability) => {
           this.spellsArray.push(ability);
         });
-
-        console.log(this.spellsArray);
       });
   }
 

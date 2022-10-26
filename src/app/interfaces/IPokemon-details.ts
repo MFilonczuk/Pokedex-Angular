@@ -3,10 +3,14 @@ export interface IPokemonDetails {
   name: string;
   img: string;
   type: string;
-  abilities: string[];
+  abilities: spellsArray[];
   hp: string;
   atk: string;
   def: string;
   weight: string;
   xp: string;
+}
+
+export interface spellsArray {
+  ability: any;
 }

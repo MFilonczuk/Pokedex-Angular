@@ -1,19 +1,19 @@
 <div style="border: 1px solid black; padding: 2rem">
   <h4 class="text-center">Pokemon Details</h4>
   <img
-    src="{{ pokemonDetails.img }}"
-    class="rounded mx-auto d-block"
     alt="Responsive image"
+    class="rounded mx-auto d-block"
+    src="{{ pokemonDetails.img }}"
   />
   <div class="row" style="margin-top: 2rem">
     <div class="col-md-4">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>ID</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.id }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.id }}"
         />
       </div>
     </div>
@@ -22,10 +22,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>NAME</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.name }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.name }}"
         />
       </div>
     </div>
@@ -34,10 +34,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>TYPE</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.type }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.type }}"
         />
       </div>
     </div>
@@ -48,10 +48,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>HP</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.hp }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.hp }}"
         />
       </div>
     </div>
@@ -60,10 +60,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>ATTACK</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.atk }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.atk }}"
         />
       </div>
     </div>
@@ -72,10 +72,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>DEFENSE</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.def }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.def }}"
         />
       </div>
     </div>
@@ -85,11 +85,11 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>ABILITIES</strong></span>
         <input
-          *ngFor="let item of spellsArray"
-          type="text"
-          pInputText
-          value="{{ item.ability.name }}"
+          *ngFor="let item of pokemonDetails.abilities"
           disabled
+          pInputText
+          type="text"
+          value="{{ item?.ability?.name }}"
         />
       </div>
     </div>
@@ -99,10 +99,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>WEIGHT</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.weight }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.weight }}"
         />
       </div>
     </div>
@@ -110,10 +110,10 @@
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon"><strong>BASE EXP</strong></span>
         <input
-          type="text"
-          pInputText
-          value="{{ pokemonDetails.xp }}"
           disabled
+          pInputText
+          type="text"
+          value="{{ pokemonDetails.xp }}"
         />
       </div>
     </div>

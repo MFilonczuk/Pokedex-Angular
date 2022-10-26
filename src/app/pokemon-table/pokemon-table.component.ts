@@ -19,13 +19,6 @@ export class PokemonTableComponent {
   totalRecords!: number;
 
   cols!: any[];
-
-  pokemon: IPokemon = {
-    id: '',
-    name: '',
-    type: '',
-    abilities: [],
-  };
   pokemonArray: IPokemon[] = [];
   displayedColumns: string[] = ['id', 'name', 'types', 'abilities', 'actions'];
   length: number = 10;
@@ -33,8 +26,8 @@ export class PokemonTableComponent {
   pageSizeOptions: number[] = [5, 10, 50, 100];
   sub!: Subscription;
   rowsNumber: number = 10;
-  upperBound: number = 10;
-  lowerBound: number = 0;
+  upperBound: number | any = 10;
+  lowerBound: number | any = 0;
   last: number = 10;
   temp: string = '';
   first: number = 0;
@@ -59,62 +52,56 @@ export class PokemonTableComponent {
   }
 
   ngOnInit() {
-    this.primengConfig.ripple = true;
+    this.loading = true;
   }
 
-  goToPokemonDetails(id: number): void {
+  goToPokemonDetails(id: string): void {
+    console.log(id);
     this.router.navigate([`/details/${id}`]);
+  }
+
+  pokemonAbilitiesText(abilitiesArrayLength: number) {
+    let modalText = '';
+    if (abilitiesArrayLength > 2) {
+      modalText = `${abilitiesArrayLength - 1} more abilities`;
+    } else if (abilitiesArrayLength == 2) {
+      modalText = `${abilitiesArrayLength - 1} more ability`;
+    }
+
+    return modalText;
   }
 
   loadPokemons(event: LazyLoadEvent) {
     this.loading = true;
-    setTimeout(() => {
-      this.sub = this.pokemonTableService
-        .getPokemons(this.lowerBound, this.upperBound)
-        .subscribe((response) => {
-          this.length = response.count;
-          const pokemonList$: Observable<any>[] = [];
-          this.first = this.last / this.rowsNumber;
-          this.lowerBound = this.first * 10;
-          this.upperBound = this.lowerBound + 10;
-          this.pokemonArray = [];
+    this.lowerBound = event?.first;
+    this.upperBound = 10;
 
-          response.results.forEach((poke) => {
-            pokemonList$.push(
-              this.pokemonDataService.getPokemonsData(poke.url)
-            );
-          });
-          forkJoin(pokemonList$).subscribe((response) => {
-            response.forEach((pokemonDetails) => {
-              this.pokemon = {
-                id: '',
-                name: '',
-                type: '',
-                abilities: [],
-              };
+    this.pokemonArray = [];
+    this.sub = this.pokemonTableService
+      .getPokemons(this.lowerBound, this.upperBound)
+      .subscribe((response) => {
+        this.length = response.count;
+        const pokemonList$: Observable<any>[] = [];
 
-              this.pokemon.id = pokemonDetails.id;
-              this.pokemon.name = pokemonDetails.forms[0].name;
-              this.pokemon.type = pokemonDetails.types[0].type.name;
-              this.pokemon.abilities = pokemonDetails.abilities;
-              this.pokemonArray.push(this.pokemon);
-              this.last = parseInt(
-                this.pokemonArray[this.pokemonArray.length - 1].id
-              );
-            });
-            console.log(this.pokemonArray);
-            this.loading = false;
-            console.log('Current page is ' + this.first);
-          });
+        response.results.forEach((poke) => {
+          pokemonList$.push(this.pokemonDataService.getPokemonsData(poke.url));
         });
+        forkJoin(pokemonList$).subscribe((response) => {
+          response.forEach((pokemonDetails) => {
+            const pokemon = {
+              id: pokemonDetails.id,
+              name: pokemonDetails.forms[0].name,
+              type: pokemonDetails.types[0].type.name,
+              abilities: pokemonDetails.abilities,
+            };
 
-      console.log('lower ' + this.lowerBound);
-      console.log('upper ' + this.upperBound);
-      console.log('last number ' + this.last);
-    }, 500);
+            this.pokemonArray.push(pokemon);
+          });
+          console.log(this.pokemonArray);
+          this.loading = false;
+        });
+      });
   }
-
-  //////////////////////////////////////////////////////
 
   ngOnDestroy() {
     this.sub.unsubscribe();
