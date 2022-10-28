@@ -1,1 +1,16 @@
-<p>pokemon-compare works!</p>
+<p-table [value]="pokemonCompareArray" styleClass="p-datatable-gridlines">
+  <ng-template pTemplate="caption"> Compare Pokemons</ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>{{ firstPokemondDetails.name }}</th>
+      <th>{{ secondPokemonDetails.name }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body">
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -14,3 +14,7 @@ export interface IPokemonDetails {
 export interface spellsArray {
   ability: any;
 }
+
+export interface IPokemonCompare {
+  PokemonCompareArray: IPokemonDetails[];
+}

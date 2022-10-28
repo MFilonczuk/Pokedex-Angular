@@ -4,88 +4,100 @@
 >
   <div class="col-md-10">
     <p-table
-      [value]="pokemonArray"
-      [lazy]="true"
-      [(first)]="first"
       (onLazyLoad)="loadPokemons($event)"
-      responsiveLayout="scroll"
-      dataKey="id"
+      [globalFilterFields]="['pokemon.name', 'pokemon.types']"
+      [lazy]="true"
+      [loading]="loading"
       [paginator]="true"
       [rows]="rowsNumber"
       [totalRecords]="length"
-      [loading]="loading"
-      [globalFilterFields]="['pokemon.name', 'pokemon.types']"
+      [value]="pokemonArray"
       currentPageReportTemplate="true"
+      dataKey="id"
+      responsiveLayout="scroll"
     >
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="pokemon.id">
-            ID <p-sortIcon field="pokemon.id"></p-sortIcon>
+            ID
+            <p-sortIcon field="pokemon.id"></p-sortIcon>
           </th>
           <th pSortableColumn="pokemon.name">
-            Name <p-sortIcon field="pokemon.name"></p-sortIcon>
+            Name
+            <p-sortIcon field="pokemon.name"></p-sortIcon>
           </th>
           <th pSortableColumn="pokemon.type">
-            Types <p-sortIcon field="pokemon.type"></p-sortIcon>
+            Types
+            <p-sortIcon field="pokemon.type"></p-sortIcon>
           </th>
           <th>Abilities</th>
           <th>Actions</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-pokemon>
+      <ng-template let-pokemon pTemplate="body">
         <tr>
           <td>{{ pokemon.id }}</td>
           <td>{{ pokemon.name }}</td>
-          <td>{{ pokemon.type }}</td>
+          <td>
+            <div
+              [colorType]="pokemon.type"
+              style="color: white; padding: 5px; text-align: center"
+            >
+              {{ pokemon.type }}
+            </div>
+          </td>
           <td>
             <p-button
               (click)="showModalDialog(pokemon.abilities)"
               icon="pi pi-external-link"
-              label="{{ pokemon.abilities[0].ability.name }} 
-              {{ pokemonAbilitiesText(pokemon.abilities.length) }} 
+              label="{{ pokemon.abilities[0].ability.name }}
+              {{ pokemonAbilitiesText(pokemon.abilities.length) }}
               "
             >
             </p-button>
             <p-dialog
-              header="All Abilities"
               [(visible)]="displayModal"
-              [modal]="false"
-              [style]="{ width: '50vw' }"
               [baseZIndex]="10000"
               [draggable]="false"
+              [modal]="false"
               [resizable]="false"
+              [style]="{ width: '50vw' }"
+              header="All Abilities"
             >
-              <p class="m-0" *ngFor="let item of spellsArray">
+              <p *ngFor="let item of spellsArray" class="m-0">
                 - {{ item.ability.name }}
               </p>
               <ng-template pTemplate="footer">
                 <p-button
-                  icon="pi pi-check"
                   (click)="displayModal = false"
-                  label="Back"
                   class="p-button-text"
+                  icon="pi pi-check"
+                  label="Back"
                 ></p-button>
               </ng-template>
             </p-dialog>
           </td>
           <td>
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Details"
-              class="p-button-raised p-button-secondary"
-              style="margin: 5px"
-              (click)="goToPokemonDetails(pokemon.id)"
-            ></button>
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Compare"
-              class="p-button-raised p-button-secondary"
-              style="margin: 5px"
-            ></button>
+            <div style="align-items: center; display: flex; padding: 5px">
+              <i
+                (click)="goToPokemonDetails(pokemon.id)"
+                class="pi pi-info-circle"
+                style="font-size: 20px; margin-right: auto"
+              >
+              </i>
+              <p-checkbox
+                (onChange)="
+                  selectPokemonToCompare(
+                    $event.checked,
+                    pokemon.id,
+                    pokemon.name
+                  )
+                "
+                [binary]="true"
+                [disabled]="isCheckboxDisabled(pokemon.id)"
+                [value]="isCheckboxChecked(pokemon.id)"
+              ></p-checkbox>
+            </div>
           </td>
         </tr>
       </ng-template>

@@ -1,7 +1,7 @@
 <nav>
   <p
-    routerLink="/home"
     class="h1"
+    routerLink="/home"
     style="
       text-align: center;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -13,4 +13,29 @@
   >
     {{ pageTitle }}
   </p>
+
+  <div style="display: flex; padding: 5px">
+    <div style="margin: auto">
+      <button
+        (click)="removePokemon(selectedPokemons[0].id)"
+        *ngIf="selectedPokemons.length > 0"
+        style="margin-right: 1rem"
+      >
+        {{ selectedPokemons[0].name }}
+      </button>
+      <i
+        (click)="goToDetails()"
+        *ngIf="selectedPokemons.length > 0"
+        class="pi pi-arrow-right-arrow-left"
+        style="font-size: 20px"
+      ></i>
+      <button
+        (click)="removePokemon(selectedPokemons[1].id)"
+        *ngIf="selectedPokemons.length > 1"
+        style="margin-left: 1rem"
+      >
+        {{ selectedPokemons[1].name }}
+      </button>
+    </div>
+  </div>
 </nav>
