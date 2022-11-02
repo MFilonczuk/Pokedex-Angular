@@ -19,6 +19,10 @@ export class PokemonNavbarComponent implements OnInit {
     private router: Router
   ) {}
 
+  get isButtonDisabled(): boolean {
+    return this.selectedPokemons.length < 2;
+  }
+
   ngOnInit(): void {
     this.sub = this.pokemonToCompare.selectedPokemons$.subscribe(
       (selectedPokemons) => {

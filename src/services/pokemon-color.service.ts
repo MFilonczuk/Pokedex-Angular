@@ -26,6 +26,7 @@ export class PokemonColorService {
   };
 
   getColor(type: string): string {
+    console.log('type', type);
     return this.colorType[type] || '#727171';
   }
 }

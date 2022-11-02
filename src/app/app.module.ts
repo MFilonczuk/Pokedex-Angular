@@ -27,6 +27,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ImageModule } from 'primeng/image';
 import { ColorDirective } from '../directives/color.directive';
+import { PokemonCompareGuard } from './pokemon-compare/pokemon-compare.guard';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,11 @@ import { ColorDirective } from '../directives/color.directive';
     CalendarModule,
     ToastModule,
     RouterModule.forRoot([
-      { path: 'compare', component: PokemonCompareComponent },
+      {
+        path: 'compare',
+        component: PokemonCompareComponent,
+        canActivate: [PokemonCompareGuard],
+      },
       { path: 'details/:id', component: PokemonDetailsComponent },
       { path: 'home', component: PokemonTableComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },

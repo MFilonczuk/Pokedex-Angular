@@ -15,16 +15,19 @@
   </p>
 
   <div style="display: flex; padding: 5px">
+    <button (click)="goToDetails()" [disabled]="isButtonDisabled">
+      Compare Pokemons!
+    </button>
     <div style="margin: auto">
       <button
         (click)="removePokemon(selectedPokemons[0].id)"
         *ngIf="selectedPokemons.length > 0"
         style="margin-right: 1rem"
       >
+        <i class="pi pi-times"></i>
         {{ selectedPokemons[0].name }}
       </button>
       <i
-        (click)="goToDetails()"
         *ngIf="selectedPokemons.length > 0"
         class="pi pi-arrow-right-arrow-left"
         style="font-size: 20px"
@@ -34,6 +37,7 @@
         *ngIf="selectedPokemons.length > 1"
         style="margin-left: 1rem"
       >
+        <i class="pi pi-times"></i>
         {{ selectedPokemons[1].name }}
       </button>
     </div>
