@@ -17,10 +17,8 @@ export class PokemonTableComponent implements OnInit {
   totalRecords!: number;
   cols!: any[];
   pokemonArray: IPokemon[] = [];
-  displayedColumns: string[] = ['id', 'name', 'types', 'abilities', 'actions'];
   length: number = 10;
   pageSize: number = 10;
-  pageSizeOptions: number[] = [5, 10, 50, 100];
   sub!: Subscription;
   rowsNumber: number = 10;
   lowerBound: number | any = 0;
@@ -103,14 +101,12 @@ export class PokemonTableComponent implements OnInit {
   loadPokemons(event: LazyLoadEvent) {
     this.loading = true;
     this.lowerBound = event?.first;
-
     this.pokemonArray = [];
     this.sub = this.pokemonTableService
       .getPokemons(this.lowerBound, this.rowsNumber)
       .subscribe((response) => {
         this.length = response.count;
         const pokemonList$: Observable<any>[] = [];
-
         response.results.forEach((poke) => {
           pokemonList$.push(this.pokemonDataService.getPokemonsData(poke.url));
         });
@@ -122,7 +118,6 @@ export class PokemonTableComponent implements OnInit {
               type: pokemonDetails.types[0].type.name,
               abilities: pokemonDetails.abilities,
             };
-
             this.pokemonArray.push(pokemon);
           });
           console.log(this.pokemonArray);

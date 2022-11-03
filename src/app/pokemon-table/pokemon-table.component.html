@@ -37,13 +37,13 @@
       <ng-template let-pokemon pTemplate="body">
         <tr>
           <td>{{ pokemon.id }}</td>
-          <td>{{ pokemon.name }}</td>
+          <td>{{ pokemon.name | titlecase }}</td>
           <td>
             <div
               [colorType]="pokemon.type"
               style="color: white; padding: 5px; text-align: center"
             >
-              {{ pokemon.type }}
+              {{ pokemon.type | uppercase}}
             </div>
           </td>
           <td>
@@ -85,18 +85,11 @@
                 style="font-size: 20px; margin-right: auto"
               >
               </i>
-              <p-checkbox
-                (onChange)="
-                  selectPokemonToCompare(
-                    $event.checked,
-                    pokemon.id,
-                    pokemon.name
-                  )
-                "
-                [binary]="true"
+              <mat-checkbox
+                (change)="selectPokemonToCompare($event.checked, pokemon.id, pokemon.name)"
+                [checked]="isCheckboxChecked(pokemon.id)"
                 [disabled]="isCheckboxDisabled(pokemon.id)"
-                [value]="isCheckboxChecked(pokemon.id)"
-              ></p-checkbox>
+              ></mat-checkbox>
             </div>
           </td>
         </tr>

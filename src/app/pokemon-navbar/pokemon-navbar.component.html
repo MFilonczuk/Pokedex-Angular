@@ -14,32 +14,28 @@
     {{ pageTitle }}
   </p>
 
-  <div style="display: flex; padding: 5px">
-    <button (click)="goToDetails()" [disabled]="isButtonDisabled">
-      Compare Pokemons!
-    </button>
-    <div style="margin: auto">
-      <button
-        (click)="removePokemon(selectedPokemons[0].id)"
-        *ngIf="selectedPokemons.length > 0"
-        style="margin-right: 1rem"
-      >
-        <i class="pi pi-times"></i>
-        {{ selectedPokemons[0].name }}
+  <div style="display: flex;">
+    <button (click)="goToDetails()" [disabled]="isButtonDisabled" class="p-button-raised p-button-secondary"
+            label="Compare Pokemons!"
+            pButton pRipple
+            style="width: 7rem;" type="button"></button>
+    <div style="margin: auto;">
+      <button (click)="removePokemon(selectedPokemons[0].id)" *ngIf="selectedPokemons.length > 0"
+              class="p-button-raised p-button-secondary" pButton
+              pRipple style="margin-right: 1rem" type="button">
+        <i class="pi pi-times"> </i> &nbsp; {{ selectedPokemons[0].name | uppercase}}
       </button>
       <i
         *ngIf="selectedPokemons.length > 0"
         class="pi pi-arrow-right-arrow-left"
         style="font-size: 20px"
       ></i>
-      <button
-        (click)="removePokemon(selectedPokemons[1].id)"
-        *ngIf="selectedPokemons.length > 1"
-        style="margin-left: 1rem"
-      >
-        <i class="pi pi-times"></i>
-        {{ selectedPokemons[1].name }}
-      </button>
+
+      <button (click)="removePokemon(selectedPokemons[1].id)" *ngIf="selectedPokemons.length > 1"
+              class="p-button-raised p-button-secondary" pButton
+              pRipple style="margin-left: 1rem" type="button">
+        <i class="pi pi-times"></i> &nbsp;
+        {{ selectedPokemons[1].name | uppercase}}</button>
     </div>
   </div>
 </nav>

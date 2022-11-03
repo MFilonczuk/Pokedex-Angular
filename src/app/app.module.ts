@@ -28,6 +28,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ImageModule } from 'primeng/image';
 import { ColorDirective } from '../directives/color.directive';
 import { PokemonCompareGuard } from './pokemon-compare/pokemon-compare.guard';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { PokemonCompareGuard } from './pokemon-compare/pokemon-compare.guard';
       { path: 'home', component: PokemonTableComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ]),
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

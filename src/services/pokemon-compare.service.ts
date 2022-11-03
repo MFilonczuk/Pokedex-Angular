@@ -16,7 +16,6 @@ export class PokemonCompareService {
 
     selectedPokemons.push({ id, name });
     this.selectedPokemons.next(selectedPokemons);
-    console.log(selectedPokemons);
   }
 
   removePokemonFromCompare(id: string): void {

@@ -17,7 +17,7 @@ export class ColorDirective implements AfterViewInit {
     if (this.colorType) {
       const hexColor = this.pokemonColorService.getColor(this.colorType);
       this.element.nativeElement.style.backgroundColor = `${hexColor}`;
-      this.element.nativeElement.style.borderRadius = '10px';
+      this.element.nativeElement.style.borderRadius = '5px';
     }
   }
 }

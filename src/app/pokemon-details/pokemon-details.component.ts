@@ -12,7 +12,6 @@ import { IPokemonDetails } from '../interfaces/IPokemon-details';
 export class PokemonDetailsComponent implements OnInit {
   sub!: Subscription;
   pokemonId: string | any = '1';
-  spellsArray: any[] = [];
 
   pokemonDetails: IPokemonDetails = {
     id: '',
@@ -26,6 +25,7 @@ export class PokemonDetailsComponent implements OnInit {
     weight: '',
     xp: '',
   };
+
   constructor(
     private router: Router,
     private pokemonDetailsService: PokemonDetailsService
@@ -51,10 +51,6 @@ export class PokemonDetailsComponent implements OnInit {
         this.pokemonDetails.def = pokemon$[0].stats[2].base_stat;
         this.pokemonDetails.weight = pokemon$[0].weight;
         this.pokemonDetails.xp = pokemon$[0].base_experience;
-
-        this.pokemonDetails.abilities.forEach((ability) => {
-          this.spellsArray.push(ability);
-        });
       });
   }
 
